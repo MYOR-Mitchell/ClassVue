@@ -1,0 +1,29 @@
+﻿.addBtn {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.adjust-button {
+    width: 175px;
+    height: 60px; 
+    border: solid white .1rem;
+    font-size: 1.3rem; 
+    padding: 10px 20px; 
+}
+
+.studentWrap {
+    color: white;
+    text-shadow: 0.2rem 0.2rem 0.2rem black;
+    list-style-type: none;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.studentList {
+    background-color: #C6827E;
+    border: solid white .1rem;
+    padding: .5rem .5rem .5rem 1rem;
+    margin: 1.5rem;
+    border-radius: 10px;
+    font-size: 1.8rem;
+}
