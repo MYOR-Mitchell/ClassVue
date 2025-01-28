@@ -11,14 +11,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <EditForm Model="@this" OnValidSubmit="AddStudent">
+                    <EditForm Model="@newStudent" OnValidSubmit="AddStudent">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" @bind="FirstName" placeholder="Enter first name" required>
+                            <InputText id="firstName" class="form-control" @bind-Value="newStudent.FirstName" placeholder="Enter first name" />
                         </div>
                         <div class="mb-3">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" @bind="LastName" placeholder="Enter last name" required>
+                            <InputText id="lastName" class="form-control" @bind-Value="newStudent.LastName" placeholder="Enter last name" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -46,21 +48,13 @@
 </main>
 
 @code {
-    private string FirstName { get; set; }
-    private string LastName { get; set; }
+    private Student newStudent = new Student();
     private List<Student> Students { get; set; } = new List<Student>();
 
     private async Task AddStudent()
     {
-        var newStudent = new Student
-            {
-                FirstName = this.FirstName,
-                LastName = this.LastName
-            };
         Students.Add(newStudent);
-
-        FirstName = string.Empty;
-        LastName = string.Empty;
+        newStudent = new Student();
 
         await JSRuntime.InvokeVoidAsync("setFocus", "firstName");
     }
