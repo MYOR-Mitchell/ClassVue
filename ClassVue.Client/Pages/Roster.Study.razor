@@ -1,0 +1,84 @@
+﻿@using ClassVue.Client.Model
+@page "/Roster-Study"
+@inject IJSRuntime JSRuntime
+
+
+<h3>Roster Study</h3>
+
+<pre><code class="language-csharp">
+@(@"
+@using ClassVue.Client.Model
+@page ""/roster""
+
+<h1>Roster</h1>
+<main>
+    <div class=""modal fade"" id=""addStudentModal"" tabindex=""-1"" aria-hidden=""true"">
+        <div class=""modal-dialog"">
+            <div class=""modal-content"">
+                <div class=""modal-header"">
+                    <h5 class=""modal-title"">Add Student</h5>
+                    <button type=""button"" class=""btn-close"" data-bs-dismiss=""modal"" aria-label=""Close""></button>
+                </div>
+                <div class=""modal-body"">
+                    <EditForm Model=""@newStudent"" OnValidSubmit=""@AddStudent"">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        <div class=""mb-3"">
+                            <label for=""firstName"" class=""form-label"">First Name</label>
+                            <InputText id=""firstName"" class=""form-control"" @bind-Value=""@newStudent.FirstName"" placeholder=""Enter first name"" />
+                        </div>
+                        <div class=""mb-3"">
+                            <label for=""lastName"" class=""form-label"">Last Name</label>
+                            <InputText id=""lastName"" class=""form-control"" @bind-Value=""@newStudent.LastName"" placeholder=""Enter last name"" />
+                        </div>
+                        <div class=""modal-footer"">
+                            <button type=""button"" class=""btn btn-secondary"" data-bs-dismiss=""modal"">Close</button>
+                            <button type=""submit"" class=""btn btn-primary"">Submit</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class=""studentWrap"">
+        @foreach (var student in Students)
+        {
+            <li class=""studentList"">@student.FirstName @student.LastName</li>
+        }
+    </ul>
+
+    <div class=""addBtn"">
+        <button type=""button"" class=""btn btn-primary adjust-button"" data-bs-toggle=""modal"" data-bs-target=""#addStudentModal"">
+            Add Student
+        </button>
+    </div>
+</main>
+
+@code {
+    private Student newStudent = new Student();
+    private List<Student> Students { get; set; } = new List<Student>();
+
+    private async Task AddStudent()
+    {
+        Students.Add(newStudent);
+        newStudent = new Student();
+
+        await JSRuntime.InvokeVoidAsync(""setFocus"", ""firstName"");
+    }
+
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; }
+}
+")
+</code></pre>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("Prism.highlightAll");
+        }
+    }
+}
