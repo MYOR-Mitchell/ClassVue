@@ -1,4 +1,5 @@
-﻿using ClassVue.Server.Models;
+﻿using ClassVue.Shared.Models;
+using ClassVue.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

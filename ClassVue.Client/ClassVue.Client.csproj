@@ -22,4 +22,8 @@
     <Folder Include="wwwroot\sample-data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Classvue.Shared\Classvue.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

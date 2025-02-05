@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ClassVue.Shared.Models;
+
 namespace ClassVue.Server.Models
 {
     public class ClassVueDbContext : DbContext

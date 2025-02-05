@@ -1,4 +1,4 @@
-﻿@using ClassVue.Client.Model
+﻿@using ClassVue.Shared.Models
 @page "/roster"
 
 <h1>Roster</h1>
@@ -51,7 +51,7 @@
     private Student newStudent = new Student();
     private List<Student> Students { get; set; } = new List<Student>();
 
-    private async Task AddStudent()
+    private async void AddStudent()
     {
         Students.Add(newStudent);
         newStudent = new Student();
