@@ -1,4 +1,4 @@
-# ClassVue 🎓
+# ClassVue 
 
 ## Overview
 **This is a personal project that I enjoy working on in my free time. It’s still in its early stages, but keep an eye on it—it’s going to evolve into something great!**
